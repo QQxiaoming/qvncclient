@@ -1,3 +1,4 @@
+#include <QInputDialog>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -6,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    vncView = new QVNCClientWidget(QVNCClientWidget::TCP,this);
+    ui->vncLayout->addWidget(vncView);
 }
 
 MainWindow::~MainWindow()
@@ -15,12 +19,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_connect_btn_pressed()
 {
-    ui->vncView->connectToVncServer(ui->host_edit->text(), QInputDialog::getText(this, "Password", "Enter password:", QLineEdit::Password));
-    ui->vncView->startFrameBufferUpdate();
+    vncView->connectToVncServer(ui->host_edit->text(), QInputDialog::getText(this, "Password", "Enter password:", QLineEdit::Password));
 }
 
 
 void MainWindow::on_disconnect_btn_pressed()
 {
-    ui->vncView->disconnectFromVncServer();
+    vncView->disconnectFromVncServer();
 }

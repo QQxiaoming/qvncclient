@@ -1,16 +1,16 @@
 
-QT       += core gui network
+QT       += core gui network websockets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = QVNCClient
 TEMPLATE = app
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    qvncclientwidget.cpp
+SOURCES += main.cpp             \
+           mainwindow.cpp       \
+           qvncclientwidget.cpp
 
-HEADERS  += mainwindow.h \
-    qvncclientwidget.h
+HEADERS += mainwindow.h         \
+           qvncclientwidget.h
 
-FORMS    += mainwindow.ui
+FORMS   += mainwindow.ui
