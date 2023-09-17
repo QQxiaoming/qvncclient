@@ -19,7 +19,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_connect_btn_pressed()
 {
-    vncView->connectToVncServer(ui->host_edit->text(), QInputDialog::getText(this, "Password", "Enter password:", QLineEdit::Password));
+    if(ui->comboBox->currentText() == "TCP") {
+        vncView->setType(QVNCClientWidget::TCP);
+    } else if(ui->comboBox->currentText() == "WebSocket") {
+        vncView->setType(QVNCClientWidget::WEBSOCKET);
+    }
+    vncView->connectToVncServer(ui->host_edit->text(),
+        QInputDialog::getText(this, "Password", "Enter password:", QLineEdit::Password),
+        ui->port_spinbox->value() );
 }
 
 
