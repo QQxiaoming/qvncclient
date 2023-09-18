@@ -8,8 +8,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->connect_btn->setEnabled(true);
+    ui->disconnect_btn->setEnabled(false);
+
     vncView = new QVNCClientWidget(QVNCClientWidget::TCP,this);
     ui->vncLayout->addWidget(vncView);
+    connect( vncView, SIGNAL(connected(bool)), this, SLOT(onConnected(bool)) );
 }
 
 MainWindow::~MainWindow()
@@ -33,4 +37,13 @@ void MainWindow::on_connect_btn_pressed()
 void MainWindow::on_disconnect_btn_pressed()
 {
     vncView->disconnectFromVncServer();
+}
+
+void MainWindow::onConnected(bool c)
+{
+    ui->host_edit->setEnabled(!c);
+    ui->comboBox->setEnabled(!c);
+    ui->port_spinbox->setEnabled(!c);
+    ui->connect_btn->setEnabled(!c);
+    ui->disconnect_btn->setEnabled(c);
 }

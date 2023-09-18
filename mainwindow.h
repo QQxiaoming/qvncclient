@@ -17,8 +17,8 @@ public:
     ~MainWindow();
 
 private slots:
+    void onConnected(bool c);
     void on_connect_btn_pressed();
-
     void on_disconnect_btn_pressed();
 
 private:
