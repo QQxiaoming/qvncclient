@@ -1,4 +1,4 @@
-# QVNCClient.pro
+# QVNCClient
 
 fork 自https://bitbucket.org/amahta/qvncclient.git 我做了一些工作：
 
